@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Dino Runner</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ffcc66">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="공룡런">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+  <div id="game-wrap">
+    <div id="canvas-wrap">
+      <canvas id="game-canvas"></canvas>
+      <div id="status-bar">
+        <span id="hearts-display">♥♥♥</span>
+        <span id="coin-display">COIN 0</span>
+        <span id="buff-display"></span>
+      </div>
+    </div>
+    <div id="touch-controls">
+      <button id="btn-duck" class="ctrl-btn">DUCK</button>
+      <button id="btn-jump" class="ctrl-btn">JUMP</button>
+    </div>
+    <p id="hint">PC: Space/↑ 점프, ↓ 숙이기 · 모바일: 버튼 또는 화면 탭</p>
+  </div>
+  <script src="js/game.js?v=11"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
