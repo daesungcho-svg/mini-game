@@ -1074,6 +1074,7 @@
     }
 
     start() {
+      this.requestFullscreen();
       this.state = 'PLAYING';
       this.speed = CONFIG.SPEED;
       this.score = 0;
@@ -1097,6 +1098,17 @@
 
     restart() {
       this.start();
+    }
+
+    requestFullscreen() {
+      // 이미 전체화면이면 다시 요청하지 않음
+      if (document.fullscreenElement || document.webkitFullscreenElement) return;
+      const el = document.documentElement;
+      const request = el.requestFullscreen || el.webkitRequestFullscreen;
+      if (request) {
+        const result = request.call(el);
+        if (result && result.catch) result.catch(() => {});
+      }
     }
 
     onGameOver() {
